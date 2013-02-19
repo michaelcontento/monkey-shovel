@@ -1,0 +1,103 @@
+args:
+    target: # automatically filled
+    vendor: # automatically filled
+    config: # automatically filled
+    mainfile: # automatically filled
+    mainfile_without_ext: # automatically filled
+
+dirs:
+    current: # automatically filled
+    home: # automatically filled
+    build: "{dirs[current]}/{args[mainfile_without_ext]}.build/{args[target]}"
+    meta: "{dirs[current]}/meta"
+    generated: "{dirs[meta]}/generated"
+
+version:
+    major: 1
+    minor:
+        ios: 0
+        amazon: 0
+        google: 0
+
+sku:
+    default: com.exmaple.app
+    ios:     "{sku[default]}"
+    amazon:  "{sku[default]}"
+    google:  "{sku[default]}"
+
+name:
+    default: Example App
+    ios:     "{name[default]}"
+    amazon:  "{name[default]}"
+    google:  "{name[default]}"
+
+orientation:
+    default: landscape
+    ios:     "{orientation[default]}"
+    amazon:  "{orientation[default]}"
+    google:  "{orientation[default]}"
+
+specials:
+    ios:
+        deploymenttarget: 4.3
+        compresspng: 0
+        hidestatusbar: 1
+        icons:
+            prerendered: 1
+    android:
+        keystore: "{dirs[home]}/android.keystore"
+        keystorePW: keystore-password
+        alias: alias
+        aliasPW: alias-password
+
+apps:
+    monkey: /Applications/Monkey/bin/trans_macos
+    wizard: "{dirs[home]}/Workspace/monkey-wizard/wizard.build/stdcpp/main_macos"
+
+commands:
+    core:
+        all:
+            # Ensure a clean build directory ...
+            - "rm -rf {dirs[build]}"
+            # ... and run Monkey/trans
+            - "{apps[monkey]} -config={args[config]} -target={args[target]} -update {args[mainfile]}"
+            # Should always be used
+            - "shovel meta.icon.resize"
+        ios:
+            - "shovel meta.loading.resize"
+            # More general stuff
+            - "{apps[wizard]} IosDeploymentTarget '{dirs[build]}' {specials[ios][deploymenttarget]}"
+            - "{apps[wizard]} IosCompressPngFiles '{dirs[build]}' {specials[ios][compresspng]}"
+            - "{apps[wizard]} IosHideStatusBar '{dirs[build]}' {specials[ios][hidestatusbar]}"
+            # SKU, name and version
+            - "{apps[wizard]} IosBundleId '{dirs[build]}' {sku[ios]}"
+            - "{apps[wizard]} IosProductName '{dirs[build]}' {name[ios]}"
+            - "{apps[wizard]} IosVersion '{dirs[build]}' {version[major]}.{version[minor][ios]}"
+            - "{apps[wizard]} IosInterfaceOrientation '{dirs[build]}' {orientation[ios]}"
+            # Icons and launch images
+            - "{apps[wizard]} IosIcons '{dirs[build]}' {specials[ios][icons][prerendered]} '{dirs[generated]}/icon-57x57.png' '{dirs[generated]}/icon-72x72.png' '{dirs[generated]}/icon-114x114.png' '{dirs[generated]}/icon-144x144.png'"
+            - "{apps[wizard]} IosLaunchImage '{dirs[build]}' iphone '{dirs[generated]}/loading-320x480.png' '{dirs[generated]}/loading-640x960.png' '{dirs[generated]}/loading-640x1136.png'"
+            - "{apps[wizard]} IosLaunchImage '{dirs[build]}' ipad-landscape '{dirs[generated]}/loading-124x768.png' '{dirs[generated]}/loading-2048x1536.png'"
+        amazon:
+            # Version and ant settings
+            - "{apps[wizard]} AndroidVersion '{dirs[build]}' {version[major]}.{version[minor][amazon]}"
+            - "{apps[wizard]} AndroidAntKey '{dirs[build]}' '{specials[android][keystore]}' '{specials[android][keystorePW]}' '{specials[android][alias]}' '{specials[android][aliasPW]}'"
+            # Icons
+            - "{apps[wizard]} AndroidIcons '{dirs[build]}' low '{dirs[generated]}/icon-rounded-36x36.png'"
+            - "{apps[wizard]} AndroidIcons '{dirs[build]}' medium '{dirs[generated]}/icon-rounded-48x48.png'"
+            - "{apps[wizard]} AndroidIcons '{dirs[build]}' high '{dirs[generated]}/icon-rounded-72x72.png'"
+            - "{apps[wizard]} AndroidIcons '{dirs[build]}' extra-high '{dirs[generated]}/icon-rounded-96x96.png'"
+        google:
+            # Version and ant settings
+            - "{apps[wizard]} AndroidVersion '{dirs[build]}' {version[major]}.{version[minor][google]}"
+            - "{apps[wizard]} AndroidAntKey '{dirs[build]}' '{specials[android][keystore]}' '{specials[android][keystorePW]}' '{specials[android][alias]}' '{specials[android][aliasPW]}'"
+            # Icons
+            - "{apps[wizard]} AndroidIcons '{dirs[build]}' low '{dirs[generated]}/icon-rounded-36x36.png'"
+            - "{apps[wizard]} AndroidIcons '{dirs[build]}' medium '{dirs[generated]}/icon-rounded-48x48.png'"
+            - "{apps[wizard]} AndroidIcons '{dirs[build]}' high '{dirs[generated]}/icon-rounded-72x72.png'"
+            - "{apps[wizard]} AndroidIcons '{dirs[build]}' extra-high '{dirs[generated]}/icon-rounded-96x96.png'"
+    app:
+        all:
+        ios:
+        amazon:
+        google:
