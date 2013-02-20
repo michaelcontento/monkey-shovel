@@ -14,8 +14,20 @@ def save(image, filename):
 
 
 @task
+def retina_resize():
+    for filename in path_meta().files("screen-*.png"):
+        image = Image.open(filename)
+
+        if image.size != (2048, 1580):
+            continue
+
+        resized = image.resize((1024, 790), Image.ANTIALIAS)
+        resized.save(filename, filename.ext[1:].upper())
+
+@task
 def export():
     depends("meta.pxm.export")
+    depends("meta.screenshots.retina_resize")
 
     for filename in path_meta().files("screen-*.png"):
         image = Image.open(filename)
