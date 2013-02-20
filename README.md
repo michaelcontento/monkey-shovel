@@ -20,7 +20,7 @@ Reusable [Shovel][] tasks for projects based on [Monkey][].
 
         touch shovel/meta.py
 
-    **TODO:** This should be fixed! I have noe glue why this is important but
+    **TODO:** This should be fixed! I have no clue why this is important but
     this file, in combination with `meta/__init__.py`, was the only way to get
     it running.
 
