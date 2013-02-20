@@ -95,7 +95,6 @@ def run_commands(commands):
     FNULL = open('/dev/null', 'w')
 
     for command in commands:
-        print command
         child = Popen(command, stdout=FNULL, shell=True)
         if child.wait() != 0:
             exit(1)
