@@ -41,8 +41,9 @@ building your project from zero to hero with a single click :)
 
 1. Read all config files
 1. Replace all template files
-1. Execute all core commands
+1. Execute all app\_before commands
 1. Execute all app commands
+1. Execute all app\_after commands
 1. Done
 
 #### Config files
@@ -72,10 +73,12 @@ small example of this can be found at [data/example-commandr.monkey.tpl].
 Just define whatever command you want and they get executed in the following
 order:
 
-1. `commands['core']['all']`
-1. `commands['core'][vendor]` *Example:* `commands['core']['ios']`
+1. `commands['app_before']['all']`
+1. `commands['app_before'][vendor]` *Example:* `commands['app_before']['ios']`
 1. `commands['app']['all']`
 1. `commands['app'][vendor]` *Exmaple:* `commands['app']['ios']`
+1. `commands['app_after']['all']`
+1. `commands['app_after'][vendor]` *Example:* `commands['app_after']['ios']`
 
 ### meta.icon.resize
 

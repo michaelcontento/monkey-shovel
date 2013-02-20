@@ -129,13 +129,17 @@ def run(vendor, mode, mainfile):
     print "----> Replacing template files"
     replace_templates(config)
 
-    print "----> Execute core commands"
-    run_commands(config["commands"]["core"]["all"])
-    run_commands(config["commands"]["core"][vendor])
+    print "----> Execute app_before commands"
+    run_commands(config["commands"]["app_before"]["all"])
+    run_commands(config["commands"]["app_before"][vendor])
 
     print "----> Execute app commands"
     run_commands(config["commands"]["app"]["all"])
     run_commands(config["commands"]["app"][vendor])
+
+    print "----> Execute app_after commands"
+    run_commands(config["commands"]["app_after"]["all"])
+    run_commands(config["commands"]["app_after"][vendor])
 
     print "----> Done"
 

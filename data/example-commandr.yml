@@ -55,7 +55,7 @@ apps:
     wizard: "{dirs[home]}/Workspace/monkey-wizard/wizard.build/stdcpp/main_macos"
 
 commands:
-    core:
+    app_before:
         all:
             # Ensure a clean build directory ...
             - "rm -rf {dirs[build]}"
@@ -97,6 +97,11 @@ commands:
             - "{apps[wizard]} AndroidIcons '{dirs[build]}' high '{dirs[generated]}/icon-rounded-72x72.png'"
             - "{apps[wizard]} AndroidIcons '{dirs[build]}' extra-high '{dirs[generated]}/icon-rounded-96x96.png'"
     app:
+        all:
+        ios:
+        amazon:
+        google:
+    app_after:
         all:
         ios:
         amazon:
