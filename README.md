@@ -1,4 +1,4 @@
-# [Monkey-Meta][]
+# [Monkey-Shovel][]
 
 Reusable [Shovel][] tasks for projects based on [Monkey][].
 
@@ -14,7 +14,7 @@ Reusable [Shovel][] tasks for projects based on [Monkey][].
 
 1. Add this repository as submodule
 
-        git submodule add git@github.com:michaelcontento/monkey-meta.git shovel/meta
+        git submodule add git@github.com:michaelcontento/monkey-shovel.git shovel/meta
 
 1. Make it loadable for shovel
 
@@ -158,7 +158,7 @@ After:
 
 ## Development
 
-The [Monkey-Meta][] source code is hosted on [GitHub][]. It's clean, modular,
+The [Monkey-Shovel][] source code is hosted on [GitHub][]. It's clean, modular,
 and easy to understand, even if you're not a shell hacker.
 
 Please feel free to submit pull requests and file bugs on the [issue tracker][].
@@ -180,8 +180,8 @@ Please feel free to submit pull requests and file bugs on the [issue tracker][].
     limitations under the License.
 
   [GitHub]: https://github.com
-  [Monkey-Meta]: https://github.com/michaelcontento/monkey-meta
-  [issue tracker]: https://github.com/michaelcontento/monkey-meta/issues
+  [Monkey-Shovel]: https://github.com/michaelcontento/monkey-shovel
+  [issue tracker]: https://github.com/michaelcontento/monkey-shovel/issues
   [Pixelmator]: www.pixelmator.com
   [Monkey]: http://monkeycoder.co.nz/
   [YAML]: http://en.wikipedia.org/wiki/YAML
