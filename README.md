@@ -55,7 +55,7 @@ Config files are stored as [YAML][] files and loaded from two locations:
 Both files are merged together (local overwrites global) and the final result
 is used in all further steps.
 
-A example configuration file can be found at [data/example-commandr.yml][].
+An example configuration file can be found at [data/example-commandr.yml][].
 If you update some paths (like `apps[monkey]` and `apps[wizard]`) this file
 should successfully build monkey projects.
 
@@ -159,18 +159,18 @@ After:
 ### meta.screenshots.export
 
 Converts all _"mast screenshots"_ `meta/screen-*.png` into all required sizes
-and, optionally, merge some overlay images. It also depends on `meta.pxm.export`
+and, optionally, merges some overlay images. It also depends on `meta.pxm.export`
 so you don't have to export `.PXM` files manually.
 
-What "overlay images" are? Simple transparent `.PNG` files that contains some
+What are "overlay images"? Simple transparent `.PNG` files that contain some
 buttons, effects or just some text. They are placed over the raw screenshot
-to generate the final result (that is saved and scaled to all required sizes).
+to generate the final result (which is saved and scaled to all required sizes).
 
 All files `meta/screen-*.png` and `overlay-*.png` are expected to be in
 1024x768. In fact -- that's not quite true for the raw screenshots. They can
 also be higher and are trimmed down to 768. This is very nice because it allows
 one to simply use OSX screenshots (`alt+shift+4 + space + mouse click`) from the
-`GLFW` target (the nasty windows border at the top will be removed).
+`GLFW` target (the nasty window border at the top will be removed).
 
 Before:
 
