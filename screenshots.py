@@ -27,8 +27,10 @@ def export():
 
         # overlay
         name = "".join(filename.namebase.split("-")[1:])
-        overlay = Image.open(path_meta() / "overlay-" + name + ".png")
-        cropped.paste(overlay, None, overlay)
+        overlayfile = path_meta() / "overlay-" + name + ".png"
+        if overlayfile.exists():
+            overlay = Image.open(overlayfile)
+            cropped.paste(overlay, None, overlay)
 
         # save
         for x, y in ((1024, 768), (960, 640), (1136, 640), (1280, 720)):
