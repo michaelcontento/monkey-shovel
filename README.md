@@ -69,7 +69,7 @@ small example of this can be found at [data/example-commandr.monkey.tpl].
 
 #### Executed commands
 
-Just define whatever command you want and they get executed in the following 
+Just define whatever command you want and they get executed in the following
 order:
 
 1. `commands['core']['all']`
@@ -79,7 +79,7 @@ order:
 
 ### meta.icon.resize
 
-Converts the _"mast icon file"_ `meta/icon.png` into all requied sized with and
+Converts the _"mast icon file"_ `meta/icon.png` into all required sizes with and
 without rounded borders. It also depends on `meta.pxm.export` so you don't have
 to export `.PXM` files manually.
 
@@ -155,6 +155,53 @@ After:
     │   └── some-other-file.pxm
     ├── some-file.png
     └── some-file.pxm
+
+### meta.screenshots.export
+
+Converts all _"mast screenshots"_ `meta/screen-*.png` into all required sizes
+and, optionally, merge some overlay images. It also depends on `meta.pxm.export`
+so you don't have to export `.PXM` files manually.
+
+What "overlay images" are? Simple transparent `.PNG` files that contains some
+buttons, effects or just some text. They are placed over the raw screenshot
+to generate the final result (that is saved and scaled to all required sizes).
+
+All files `meta/screen-*.png` and `overlay-*.png` are expected to be in
+1024x768. In fact -- that's not quite true for the raw screenshots. They can
+also be higher and are trimmed down to 768. This is very nice because it allows
+one to simply use OSX screenshots (`alt+shift+4 + space + mouse click`) from the
+`GLFW` target (the nasty windows border at the top will be removed).
+
+Before:
+
+    meta
+    ├── overlay-1.pxm
+    ├── overlay-2.pxm
+    ├── overlay-3.pxm
+    ├── overlay-4.pxm
+    ├── screen-1.png
+    ├── screen-2.png
+    ├── screen-3.png
+    └── screen-4.png
+
+After:
+
+    meta
+    ├── generated
+    │   ├── screen-1-960x640.jpg
+    │   ├── screen-1-1024x768.jpg
+    │   ├── screen-1-1136x640.jpg
+    │   ├── screen-1-1280x720.jpg
+    │   ├── screen-2-960x640.jpg
+    │   ├── screen-2-1024x768.jpg
+    │   ├── screen-2-1136x640.jpg
+    │   └── screen-2-1280x720.jpg
+    ├── overlay-1.png
+    ├── overlay-1.pxm
+    ├── overlay-2.png
+    ├── overlay-2.pxm
+    ├── screen-1.png
+    └── screen-2.png
 
 ## Development
 
