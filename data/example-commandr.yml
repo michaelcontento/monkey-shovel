@@ -96,13 +96,27 @@ commands:
             - "{apps[wizard]} AndroidIcons '{dirs[build]}' medium '{dirs[generated]}/icon-rounded-48x48.png'"
             - "{apps[wizard]} AndroidIcons '{dirs[build]}' high '{dirs[generated]}/icon-rounded-72x72.png'"
             - "{apps[wizard]} AndroidIcons '{dirs[build]}' extra-high '{dirs[generated]}/icon-rounded-96x96.png'"
+
     app:
         all:
         ios:
         amazon:
         google:
+
     app_after:
         all:
         ios:
         amazon:
+            # Sometimes Monkey is buggy ...
+            - "rm -rf '{dirs[build]}/assets' && mkdir '{dirs[build]}/assets'"
+            # Some commands could have changed some templates
+            - "{apps[monkey]} -config={args[config]} -target={args[target]} -update {args[mainfile]}"
+            # Compile
+            - "cd '{dirs[build]}' && ant release"
         google:
+            # Sometimes Monkey is buggy ...
+            - "rm -rf '{dirs[build]}/assets' && mkdir '{dirs[build]}/assets'"
+            # Some commands could have changed some templates
+            - "{apps[monkey]} -config={args[config]} -target={args[target]} -update {args[mainfile]}"
+            # Compile
+            - "cd '{dirs[build]}' && ant release"
