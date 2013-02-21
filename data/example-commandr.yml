@@ -77,7 +77,7 @@ commands:
             # Icons and launch images
             - "{apps[wizard]} IosIcons '{dirs[build]}' {specials[ios][icons][prerendered]} '{dirs[generated]}/icon-57x57.png' '{dirs[generated]}/icon-72x72.png' '{dirs[generated]}/icon-114x114.png' '{dirs[generated]}/icon-144x144.png'"
             - "{apps[wizard]} IosLaunchImage '{dirs[build]}' iphone '{dirs[generated]}/loading-320x480.png' '{dirs[generated]}/loading-640x960.png' '{dirs[generated]}/loading-640x1136.png'"
-            - "{apps[wizard]} IosLaunchImage '{dirs[build]}' ipad-landscape '{dirs[generated]}/loading-124x768.png' '{dirs[generated]}/loading-2048x1536.png'"
+            - "{apps[wizard]} IosLaunchImage '{dirs[build]}' ipad-landscape '{dirs[generated]}/loading-1024x768.png' '{dirs[generated]}/loading-2048x1536.png'"
         amazon:
             # Version and ant settings
             - "{apps[wizard]} AndroidVersion '{dirs[build]}' {version[major]}.{version[minor][amazon]}"
