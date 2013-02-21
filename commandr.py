@@ -82,6 +82,8 @@ def get_target_for_vendor(target):
         return "android"
     elif target == "google":
         return "android"
+    elif target == "samsung":
+        return "android"
     else:
         return target
 
@@ -163,7 +165,7 @@ def build(target="all", mode="release", mainfile=None):
         mainfile = detect_mainfile()
 
     if target == "all":
-        for target in ("Amazon", "Google", "iOS"):
+        for target in ("Amazon", "Google", "Samsung", "iOS"):
             print "##### " + target
             build(target, mode, mainfile)
             print ""

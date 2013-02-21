@@ -46,6 +46,13 @@ Const COMMANDR_IOS_ID := "{specials[ios][id]}"
 
     Const COMMANDR_SKU := "{sku[google]}"
     Const COMMANDR_REVMOB_ID := "{specials[google][revmob]}"
+#ElseIf COMMANDR_VENDOR="samsung"
+    #ANDROID_APP_LABEL="{name[samsung]}"
+    #ANDROID_APP_PACKAGE="{sku[samsung]}"
+    #ANDROID_SCREEN_ORIENTATION="{orientation[samsung]}"
+
+    Const COMMANDR_SKU := "{sku[samsung]}"
+    Const COMMANDR_REVMOB_ID := "{specials[samsung][revmob]}"
 #Else
     Const COMMANDR_SKU := "{sku[ios]}"
     Const COMMANDR_REVMOB_ID := "{specials[ios][revmob]}"
