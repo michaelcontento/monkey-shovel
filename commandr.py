@@ -7,7 +7,7 @@ from json import dumps as json_dumps
 from meta.utils import path_meta, depends
 from path import path
 from shovel import task
-from subprocess import Popen
+from subprocess import Popen, PIPE
 from sys import exit
 from copy import deepcopy
 from yaml import load as yaml_load
@@ -91,12 +91,19 @@ def run_commands(commands):
     if commands is None:
         return
 
-    # use FNULL instead of PIPE to save some resources
-    FNULL = open('/dev/null', 'w')
-
     for command in commands:
-        child = Popen(command, stdout=FNULL, shell=True)
-        if child.wait() != 0:
+        child = Popen(command, stdout=PIPE, stderr=PIPE, shell=True)
+        (stdoutdata, stderrdata) = child.communicate()
+
+        if child.returncode != 0:
+            print "!!!!! COMMAND FAILED WITH RETURNCODE " + str(child.returncode)
+            print command
+            if len(stdoutdata) > 0:
+                print "!!!!! STDOUT:"
+                print stdoutdata
+            if len(stderrdata) > 0:
+                print "!!!!! STDERR:"
+                print stderrdata
             exit(1)
 
 
