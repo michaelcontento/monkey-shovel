@@ -140,14 +140,20 @@ def run(vendor, mode, mainfile):
 
     print "----> Execute app_before commands"
     run_commands(config["commands"]["app_before"]["all"])
+    if vendor != target:
+        run_commands(config["commands"]["app_before"][target])
     run_commands(config["commands"]["app_before"][vendor])
 
     print "----> Execute app commands"
     run_commands(config["commands"]["app"]["all"])
+    if vendor != target:
+        run_commands(config["commands"]["app"][target])
     run_commands(config["commands"]["app"][vendor])
 
     print "----> Execute app_after commands"
     run_commands(config["commands"]["app_after"]["all"])
+    if vendor != target:
+        run_commands(config["commands"]["app_after"][target])
     run_commands(config["commands"]["app_after"][vendor])
 
     print "----> Done"

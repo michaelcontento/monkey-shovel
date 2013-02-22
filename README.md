@@ -42,9 +42,20 @@ building your project from zero to hero with a single click :)
 1. Read all config files
 1. Replace all template files
 1. Execute all app\_before commands
+    1. `commands["app_before"]["all"]`
+    1. `commands["app_before"][target]` **[*]**
+    1. `commands["app_before"][vendor]`
 1. Execute all app commands
+    1. `commands["app"]["all"]`
+    1. `commands["app"][target]` **[*]**
+    1. `commands["app"][vendor]`
 1. Execute all app\_after commands
+    1. `commands["app_after"]["all"]`
+    1. `commands["app_after"][target]` **[*]**
+    1. `commands["app_after"][vendor]`
 1. Done
+
+**[*]** Only executed if `target` is not equal to `vendor`
 
 #### Config files
 
