@@ -10,6 +10,7 @@ from shovel import task
 from subprocess import Popen, PIPE
 from sys import exit
 from copy import deepcopy
+from os import environ
 from yaml import load as yaml_load
 
 
@@ -96,6 +97,10 @@ def run_commands(commands):
     for command in commands:
         child = Popen(command, stdout=PIPE, stderr=PIPE, shell=True)
         (stdoutdata, stderrdata) = child.communicate()
+
+        # TODO use --verbose for this?
+        if "DEBUG" in environ:
+            print command
 
         if child.returncode != 0:
             print "!!!!! COMMAND FAILED WITH RETURNCODE " + str(child.returncode)
