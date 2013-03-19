@@ -7,7 +7,7 @@ from shovel import task
 from meta.utils import path_meta, path_generated, path_data, depends
 
 
-SIZES = (36, 48, 57, 72, 96, 114, 144, 512, 1024)
+SIZES = (36, 48, 57, 72, 96, 114, 135, 144, 512, 1024)
 
 
 @task
@@ -22,4 +22,8 @@ def resize(size=SIZES):
         for image, suffix in ((icon, ""), (rounded, "rounded-")):
             name = "icon-" + suffix + str(size) + "x" + str(size) + ".png"
             resized = image.resize((size, size), Image.ANTIALIAS)
-            resized.save(path_generated() / name, "PNG")
+
+            if size == 135:
+                resized.save(path_generated() / name.replace(".png", ".jpg"), "JPEG")
+            else:
+                resized.save(path_generated() / name, "PNG")
