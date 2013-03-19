@@ -45,7 +45,7 @@ def export():
             cropped.paste(overlay, None, overlay)
 
         # save
-        for x, y in ((1024, 768), (960, 640), (1136, 640), (1280, 720)):
+        for x, y in ((1024, 768), (800, 480), (960, 640), (1136, 640), (1280, 720)):
             resized = cropped.resize((x, y), Image.ANTIALIAS)
             savename = "screen-" + name + "-" + str(x) + "x" + str(y) + ".jpg"
             save(resized, path_generated() / savename)
