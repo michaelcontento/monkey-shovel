@@ -7,7 +7,7 @@ from shovel import task
 from meta.utils import path_meta, path_generated, path_data, depends
 
 
-SIZES = (36, 48, 57, 72, 96, 114, 135, 144, 512, 1024)
+SIZES = (36, 48, 57, 72, 96, 114, 135, 144, 256, 512, 1024)
 
 
 @task
