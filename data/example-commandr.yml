@@ -1,5 +1,6 @@
 args:
     target: # automatically filled
+    target_monkey: # automatically filled
     vendor: # automatically filled
     config: # automatically filled
     mainfile: # automatically filled
@@ -55,7 +56,7 @@ specials:
         aliasPW: alias-password
 
 apps:
-    monkey: /Applications/Monkey/bin/trans_macos
+    monkey: /Applications/Monkey/bin/transcc_macos
     wizard: "{dirs[home]}/Workspace/monkey-wizard/wizard.build/stdcpp/main_macos"
 
 commands:
@@ -64,7 +65,7 @@ commands:
             # Ensure a clean build directory ...
             - "rm -rf {dirs[build]}"
             # ... and run Monkey/trans
-            - "{apps[monkey]} -config={args[config]} -target={args[target]} -update {args[mainfile]}"
+            - "{apps[monkey]} -config={args[config]} -target={args[target_monkey]} -update {args[mainfile]}"
             # Should always be used
             - "shovel meta.icon.resize"
         ios:
@@ -75,7 +76,7 @@ commands:
             - "{apps[wizard]} IosHideStatusBar '{dirs[build]}' {specials[ios][hidestatusbar]}"
             # SKU, name and version
             - "{apps[wizard]} IosBundleId '{dirs[build]}' {sku[ios]}"
-            - "{apps[wizard]} IosProductName '{dirs[build]}' {name[ios]}"
+            - "{apps[wizard]} IosProductName '{dirs[build]}' '{name[ios]}'"
             - "{apps[wizard]} IosVersion '{dirs[build]}' {version[major]}.{version[minor][ios]}"
             - "{apps[wizard]} IosInterfaceOrientation '{dirs[build]}' {orientation[ios]}"
             # Icons and launch images
@@ -111,9 +112,10 @@ commands:
             # Sometimes Monkey is buggy ...
             - "rm -rf '{dirs[build]}/assets' && mkdir '{dirs[build]}/assets'"
             # Some commands could have changed some templates
-            - "{apps[monkey]} -config={args[config]} -target={args[target]} -update {args[mainfile]}"
+            - "{apps[monkey]} -config={args[config]} -target={args[target_monkey]} -update {args[mainfile]}"
             # Compile
             - "cd '{dirs[build]}' && ant release"
+            - "cd '{dirs[build]}' && ant installr"
         amazon:
         google:
         samsung:
