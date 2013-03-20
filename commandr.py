@@ -80,11 +80,13 @@ def config_load():
 
 def get_target_for_vendor(target):
     if target == "amazon":
-        return "android"
+        return "Android_Game"
     elif target == "google":
-        return "android"
+        return "Android_Game"
     elif target == "samsung":
-        return "android"
+        return "Android_Game"
+    elif target == "ios":
+        return "iOS_Game"
     else:
         return target
 
@@ -114,7 +116,7 @@ def run_commands(commands):
             exit(1)
 
 
-def config_inject_defaults(config, vendor, mode, mainfile, target):
+def config_inject_defaults(config, vendor, mode, mainfile, target, target_monkey):
     config["dirs"]["current"] = path(".").realpath()
     config["dirs"]["home"] = path("$HOME").expand()
 
@@ -123,6 +125,7 @@ def config_inject_defaults(config, vendor, mode, mainfile, target):
     config["args"]["config"] = mode
     config["args"]["mainfile"] = mainfile
     config["args"]["target"] = target
+    config["args"]["target_monkey"] = target_monkey
     config["args"]["mainfile_without_ext"] = path(mainfile).namebase
 
 
@@ -136,8 +139,9 @@ def replace_templates(config):
 def run(vendor, mode, mainfile):
     print "----> Reading configuration files"
     config = config_load()
-    target = get_target_for_vendor(vendor)
-    config_inject_defaults(config, vendor, mode, mainfile, target)
+    target_monkey = get_target_for_vendor(vendor)
+    target = target_monkey.lower().replace("_game", "")
+    config_inject_defaults(config, vendor, mode, mainfile, target, target_monkey)
     config_expand_loop(config)
 
     print "----> Replacing template files"
