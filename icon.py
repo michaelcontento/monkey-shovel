@@ -24,6 +24,6 @@ def resize(size=SIZES):
             resized = image.resize((size, size), Image.ANTIALIAS)
 
             if size == 135:
-                resized.save(path_generated() / name.replace(".png", ".jpg"), "JPEG")
+                resized.save(path_generated() / name.replace(".png", ".jpg"), "JPEG", quality=100, optimize=True, progressive=True)
             else:
                 resized.save(path_generated() / name, "PNG")
