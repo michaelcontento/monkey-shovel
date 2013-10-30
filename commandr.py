@@ -143,6 +143,7 @@ def run(vendor, mode, mainfile):
     target = target_monkey.lower().replace("_game", "")
     config_inject_defaults(config, vendor, mode, mainfile, target, target_monkey)
     config_expand_loop(config)
+    config["is_pro"] = int(config["sku"]["default"].endswith(".pro"))
 
     print "----> Replacing template files"
     replace_templates(config)
